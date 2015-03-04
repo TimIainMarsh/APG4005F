@@ -32,7 +32,7 @@ def dist(Xp,Xc,Yp,Yc):
     return mt.sqrt((Xp-Xc)**2 + (Yp-Yc)**2)        
 
 if __name__ == '__main__':
-    DomeGenerate("Data.csv")
+#    DomeGenerate("Data.csv")
     
     '''Reading the points out of the point file'''
     
@@ -61,7 +61,6 @@ if __name__ == '__main__':
         hor = 0
     
         for row in range(len(Points)):
-    #        print (Points[row+1])
             
             Xp = float(Points[row+1].x)
             Yp = float(Points[row+1].y)
@@ -102,8 +101,8 @@ if __name__ == '__main__':
         Yo = Yo + float(X[1])
         Zo = Zo + float(X[2])
         Ro = Ro + float(X[3])
+
     
-    print (Xo,Yo,Zo,Ro)  
-    
+    print (Xo,Yo,Zo,Ro)
     
     
