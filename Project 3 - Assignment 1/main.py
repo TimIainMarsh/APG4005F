@@ -33,7 +33,7 @@ def DomeGenerate(filename):
 
 
 if __name__ == '__main__':
-    DomeGenerate("Data.csv")
+#    DomeGenerate("Data.csv")
     
     '''Reading the points out of the point file'''
     
@@ -41,12 +41,12 @@ if __name__ == '__main__':
     
     '''enter the file name'''
     
-    Points.read('Data.csv')
+    Points.read('data_assignment1.csv')
 
     Xo,Yo,Zo = 202.0,302.0,102.0
     Ro = 52.0
-#    Plotting = Plotting()
-#    Plotting.plotPoints(Points)
+    Plotting = Plotting()
+    Plotting.plotPoints(Points)
     end = start = 0
     for i in range (10):
         print ("start it:  " + str(end - start))
