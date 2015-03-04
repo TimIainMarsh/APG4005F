@@ -129,7 +129,7 @@ for i in range (10):
     
     
 
-print('scale',scale)
+print('scale',scale) '''Error in Scale'''
 print('To',mt.degrees(To))
 print('Tx',Tx)
 print('Ty',Ty)
