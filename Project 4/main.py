@@ -128,8 +128,8 @@ for i in range (10):
     
     
     
-
-print('scale',scale) '''Error in Scale'''
+'''Error in Scale'''
+print('scale',scale)
 print('To',mt.degrees(To))
 print('Tx',Tx)
 print('Ty',Ty)
