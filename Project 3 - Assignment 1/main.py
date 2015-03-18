@@ -43,11 +43,19 @@ def chi_square(A,Ex):
     
     mean,var,skew,kurt = chi2.stats(df,moments = 'mvsk')
     chi = chi2.ppf(1-sigLevel,df)
+<<<<<<< HEAD
     print ('Chi_test:',chi_test,'chi: ',chi)
     if chi_test > chi:
         print ('Reject null h. Sig Lev: ' + str(sigLevel*100))
     else:
         print ('Do Not Reject null h. Sig Lev: ' + str(sigLevel*100))
+=======
+    
+    if chi_test > chi:
+        print ('Reject null h. Sig Lev: ' + str(sigLevel))
+    else:
+        print ('Do Not Reject null h. Sig Lev: ' + str(sigLevel))
+>>>>>>> origin/master
     
     
     
@@ -169,21 +177,33 @@ Xo:  0.000247034040027427
 Yo:  0.002073032848955772
 Zo:  0.031484892325592366
 Ro:  3.084421992716166
+<<<<<<< HEAD
 Do Not Reject null h. Sig Lev: 5
+=======
+Do Not Reject null h. Sig Lev:0.05
+>>>>>>> origin/master
 
 
 Xo:  0.0002470340400274099
 Yo:  0.002073032848955792
 Zo:  0.03148489232559259
 Ro:  3.084421992716166
+<<<<<<< HEAD
 Do Not Reject null h. Sig Lev: 5
+=======
+Do Not Reject null h. Sig Lev: 0.05
+>>>>>>> origin/master
 
 
 Xo:  0.00024703404002740504
 Yo:  0.0020730328489557935
 Zo:  0.0314848923255926
 Ro:  3.084421992716166
+<<<<<<< HEAD
 Do Not Reject null h. Sig Lev: 1
+=======
+Do Not Reject null h. Sig Lev: 0.01
+>>>>>>> origin/master
 
 
 ------------------------------
@@ -242,6 +262,10 @@ Yo:  0.002073032848955805
 Zo:  0.03148489232559233
 Ro:  3.084421992716166
 
+<<<<<<< HEAD
 Do Not Reject null h. Sig Lev: 5
+=======
+Do Not Reject null h. Sig Lev: 0.05
+>>>>>>> origin/master
 
 '''
