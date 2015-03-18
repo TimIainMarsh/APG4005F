@@ -43,19 +43,18 @@ def chi_square(A,Ex):
     
     mean,var,skew,kurt = chi2.stats(df,moments = 'mvsk')
     chi = chi2.ppf(1-sigLevel,df)
-<<<<<<< HEAD
+
     print ('Chi_test:',chi_test,'chi: ',chi)
     if chi_test > chi:
         print ('Reject null h. Sig Lev: ' + str(sigLevel*100))
     else:
         print ('Do Not Reject null h. Sig Lev: ' + str(sigLevel*100))
-=======
     
     if chi_test > chi:
         print ('Reject null h. Sig Lev: ' + str(sigLevel))
     else:
         print ('Do Not Reject null h. Sig Lev: ' + str(sigLevel))
->>>>>>> origin/master
+
     
     
     
