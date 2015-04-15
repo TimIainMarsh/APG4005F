@@ -184,15 +184,34 @@ if __name__ == '__main__':
                 count +=1
 
             G = np.asmatrix(G)
-            
-            GGt = G.T*G
+            G = G.T
+            GGt = G*G.T
 
             N_ = N + GGt
 
             Q_ = N_.I
             Qxx = Q_ * GGt
 
-            X = Q_ * A.T * P * W
+            X1 = Q_ * A.T * P * W
+            print (X1)
+            I = [[1,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0]]
+
+
+            #print(-(G.T*I*G) * G.T * I * X1)
+            X = X1 - (G * (G.T*I*G).I * G.T * I * X1) #issue here
+            print (X)
+            print('hhh')
             count = 0
             for i in unknowns:
                 sp = i.split('_')
@@ -202,12 +221,8 @@ if __name__ == '__main__':
                 if sp[1] == 'y':
                     point.updateY(float(X[count]))
                 count +=1
-    count= 0
 
-    for i in Qxx:
-        print (Qxx[count])
-        count+=1
-
+    '''End of iterations'''
     for pn,p in Points.items():
         print (pn,p.x,p.y, p.Tag)
 
