@@ -4,5 +4,5 @@
 \contentsline {subsection}{\numberline {3.1}Parametric Least Squares}{3}
 \contentsline {subsection}{\numberline {3.2}Free Network Adjustment}{3}
 \contentsline {section}{\numberline {4}Results}{4}
-\contentsline {section}{\numberline {5}Discussion}{5}
-\contentsline {section}{\numberline {6}Conclusion}{5}
+\contentsline {section}{\numberline {5}Discussion}{6}
+\contentsline {section}{\numberline {6}Conclusion}{6}

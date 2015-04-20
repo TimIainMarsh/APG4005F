@@ -152,7 +152,13 @@ if __name__ == '__main__':
 
     for pn,p in Points.items():
         print (pn,p.x,p.y, p.Tag)
-    print(Ex)
+    sigX = float((V.T * P * V)/(len(Obs)-len(Points)))
+    Ex = sigX * (A.T * P * A)
+    print(len(Ex))
+    for i in range(len(Ex)):
+        for j in range(len(Ex[1])):
+            print(Ex[i,j])
+            
 
 
 
