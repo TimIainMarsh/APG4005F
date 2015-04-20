@@ -9,11 +9,10 @@ from Observations import Observations
 import numpy as np
 import sympy as syp
 import math as mt
-
 import scipy.linalg as LA
-
 from timing import log_timing, log_timing_decorator
 import logging
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 logger.error('Start')
@@ -56,6 +55,7 @@ def Read_Points(filename):
 
 
 def A_Matrix(Points, Obs,unknowns):
+    print("This A matrix is soooo kak!!")
     A = np.zeros(shape=(len(unknowns),len(Obs)))
     acc = 0
     for unknown in unknowns:
@@ -70,24 +70,24 @@ def A_Matrix(Points, Obs,unknowns):
                 x1,x2,y1,y2 = syp.symbols('x1 x2 y1 y2', real=True)
                         
                 a = syp.Function('a')
-                a = (x2 - x1)/dist(target.x,target.y,point.x,point.y)
+                a = 206264.8 * ((x2 - x1)/dist(target.x,target.y,point.x,point.y)**2)
                         
                 b = syp.Function('b')
-                b = (y2 - y1)/dist(target.x,target.y,point.x,point.y)
+                b = 206264.8 * ((y2 - y1)/dist(target.x,target.y,point.x,point.y)**2)
         
                 f = syp.Function('f')
                 f = a*(dy1 - dy2) - b*(dx1 - dx2)
                 if UNsp[1] == 'x':
                     valueX = f.diff(dx1)
                     valueX = valueX.subs(y2,target.y).subs(y1,point.y)
-                    A[acc][down] = valueX
-                if UNsp[1] == 'y':
+                    A[acc][down] =valueX
+                elif UNsp[1] == 'y':
                     valueY = f.diff(dy1)
                     valueY = valueY.subs(x2,target.x).subs(x1,point.x)
-                    A[acc][down] = valueY
+                    A[acc][down] =valueY
                             
                             
-            if OBsp[1] == UNsp[0]:
+            elif OBsp[1] == UNsp[0]:
                 point = Points[OBsp[0]]
                 target = Points[OBsp[1]]
                 dx1,dx2,dy1,dy2 = syp.symbols('dx1 dx2 dy1 dy2', real=True)
@@ -95,48 +95,38 @@ def A_Matrix(Points, Obs,unknowns):
                 x1,x2,y1,y2 = syp.symbols('x1 x2 y1 y2', real=True)
                         
                 a = syp.Function('a')
-                a = (x2 - x1)/dist(target.x,target.y,point.x,point.y)
+                a = 206264.8 * ((x2 - x1)/dist(target.x,target.y,point.x,point.y)**2)
                         
                 b = syp.Function('b')
-                b = (y2 - y1)/dist(target.x,target.y,point.x,point.y)
+                b = 206264.8 * ((y2 - y1)/dist(target.x,target.y,point.x,point.y)**2)
         
                 f = syp.Function('f')
                 f = a*(dy1 - dy2) - b*(dx1 - dx2)
                 if UNsp[1] == 'x':
                     valueX = f.diff(dx2)
                     valueX = valueX.subs(y2,target.y).subs(y1,point.y)
-                    A[acc][down] = valueX
+                    A[acc][down] =valueX
                             
-                if UNsp[1] == 'y':
+                elif UNsp[1] == 'y':
                     valueY = f.diff(dy2)
                     valueY = valueY.subs(x2,target.x).subs(x1,point.x)
-                    A[acc][down] = valueY
+                    A[acc][down] =valueY
             down += 1
         acc += 1
     return A
 
-def W_Matrix(Obs,Points):
-    W = []
+def l_Matrix(Obs,Points):
+    l = []
     for obs_name,obs in Obs.items():
-        OBsp = obs_name.split('-')
-        fr = Points[OBsp[0]]
-        to = Points[OBsp[1]]
-        W.append(float(join(to,fr,obs)) - float(obs.Direction))
-    return W
+            OBsp = obs_name.split('-')
+            fr = Points[OBsp[0]]
+            to = Points[OBsp[1]]
+            l.append(float(obs.Direction) - float(join(to,fr,obs)))
+    return l
 
-def B_Matrix(Obs,Points):
-    vert = 0
-    hor = 0
-    B =  np.zeros(shape=(len(Obs),len(Obs)*2))
-    for TF, obs in Obs.items():
-        sp = TF.split('-')
-        B[vert][hor] = 1
-        B[vert][hor+1] = 1
-        vert += 1
-        hor += 2
-    return B
 
 def Creating_Unknowns(Points):
+    print("The credibility of this program is unknown.")
     unknowns = []
     for Point_name, P in Points.items():
         if P.Tag == 'P':
@@ -145,14 +135,74 @@ def Creating_Unknowns(Points):
     unknowns.sort()
     return unknowns
 
+def get_averageXY(Points):
+    print("This program is average...")
+    xAve = 0
+    yAve = 0
+    for j,i in Points.items():
+        xAve += float(i.x)
+        yAve += float(i.y)
+    return xAve,yAve
+
+def find_C(Points):
+    print("This is probably not the C you were looking for...")
+    c = 0
+    xAve,yAve = get_averageXY(Points)
+    for j,i in Points.items():
+        ei = i.x - xAve
+        ni = i.y - yAve
+        c += (ei**2 + ni**2)
+    c = mt.sqrt(c)
+    
+    print(c)
+    return c
+
+def G_Matrix(Points):
+    print("This G matrix is most probably a load of shit!")
+    xAve,yAve = get_averageXY(Points)
+    c = find_C(Points)
+    m = len(Points)
+    G = []
+    for j,i in Points.items():
+        ei = i.x - xAve
+        ni = i.y - yAve
+        
+        gRowX = [1/mt.sqrt(m) , 0, -(ni/c), (ei/c)]
+        gRowY = [0, 1/mt.sqrt(m),(ei/c), (ni/c)]
+        
+        G.append(gRowX)
+        G.append(gRowY)
+    G = np.asmatrix(G)
+    
+    return G
+                
+def S_Transform(G,X):
+    sI = [[1,0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0,0]]
+    
+    gtsigi = (G.T*sI*G).I
+    X1 = X - (G * gtsigi * G.T * sI * X)
+    
+    return X1
+print("Tim suuuuucks!!!")
 if __name__ == '__main__':
     filename = 'Book.csv'
     Points,Obs = Read_Points(filename)
-            
                       
     iterations = 5
     number = 0
-    with log_timing('iterations ' + str(iterations),logger):
+    maxX = 0
+    with log_timing(str(iterations) + ' iterations:',logger):
         for i in range(iterations):      #number of iterations
             number +=1
             print ('iteration: '+ str(number))
@@ -161,20 +211,16 @@ if __name__ == '__main__':
             A = A_Matrix(Points, Obs,unknowns)
             P = np.array(np.identity(len(Obs)))
             '''W population'''
-            W = W_Matrix(Obs,Points)
-            ''' create B '''
-            B = B_Matrix(Obs,Points)
-        
+            l = l_Matrix(Obs,Points)
             '''casting to matrix'''
-            W = (np.asmatrix(W)).T
+            l = (np.asmatrix(l)).T
             A = (np.asmatrix(A)).T
-            B = np.asmatrix(B)
             P = np.asmatrix(P)
             ''''''
-            
             N = A.T *P * A
+            G = G_Matrix(Points)
+            
             eigs = LA.eigh(N)
-
             G = []
             count  = 0
             for i in eigs[0]:
@@ -182,36 +228,17 @@ if __name__ == '__main__':
                 if round(float(i),10) == 0:
                    G.append(eigs[1][count])
                 count +=1
-
             G = np.asmatrix(G)
-            G = G.T
-            GGt = G*G.T
-
+            print(G)
+            GGt = G * G.T
             N_ = N + GGt
-
             Q_ = N_.I
-            Qxx = Q_ * GGt
-
-            X1 = Q_ * A.T * P * W
-            print (X1)
-            I = [[1,0,0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0,0,0],
-                 [0,0,0,0,0,0,0,0,0,0,0,0]]
-
-
-            #print(-(G.T*I*G) * G.T * I * X1)
-            X = X1 - (G * (G.T*I*G).I * G.T * I * X1) #issue here
-            print (X)
-            print('hhh')
+            Qxx = Q_ - GGt
+            X = Q_ * A.T * P * l
+            print(X)
+            '''update coords'''
+            if max(X)> maxX:
+                maxX = max(X)
             count = 0
             for i in unknowns:
                 sp = i.split('_')
@@ -221,15 +248,20 @@ if __name__ == '__main__':
                 if sp[1] == 'y':
                     point.updateY(float(X[count]))
                 count +=1
-
-    '''End of iterations'''
+        '''End of iterations'''
+    print("This program was created by a n0000000000b!!!")
+   
     for pn,p in Points.items():
-        print (pn,p.x,p.y, p.Tag)
+        print (pn,round(p.x,3),round(p.y,3), p.Tag)
+    print(str(maxX)+'---')
+    
+
+    
+    #print(Qxx)
 
 
-
-
-
+#30 150
+#60 140
 
 
 

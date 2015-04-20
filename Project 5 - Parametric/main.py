@@ -52,10 +52,14 @@ if __name__ == '__main__':
         
     for i in range(10):      #number of iterations
         unknowns = []
+        knowns = []
         for Point_name, P in Points.items():
             if P.Tag == 'P':
                 unknowns.append(Point_name + '_x')
                 unknowns.append(Point_name + '_y')
+            if P.Tag == 'P':
+                knowns.append(Point_name + '_x')
+                knowns.append(Point_name + '_y')
         unknowns.sort()
     
         A = np.zeros(shape=(len(unknowns),len(Obs)))
@@ -130,9 +134,10 @@ if __name__ == '__main__':
         A = (np.asmatrix(A)).T
         
         X = (A.T * P * A).I * A.T*P*L
-#        print (X)
         V = A*X - L
-        print (V)
+        sigx = float((V.T*P*V)/(len(unknown) - len(knowns)))
+        Ex = sigx * (A.T * P * A).I
+        print(X)
         count = 0
         for i in unknowns:
             sp = i.split('_')
@@ -147,6 +152,7 @@ if __name__ == '__main__':
 
     for pn,p in Points.items():
         print (pn,p.x,p.y, p.Tag)
+    print(Ex)
 
 
 
