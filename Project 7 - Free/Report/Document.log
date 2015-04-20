@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.2.24)  20 APR 2015 19:46
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.2.24)  20 APR 2015 19:53
 entering extended mode
 **Document.tex
 ("T:\Eclipse Workspace\APG4005F\Project 7 - Free\Report\Document.tex"
@@ -129,18 +129,18 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@floatcapt=\box29
 )
 ("T:\Eclipse Workspace\APG4005F\Project 7 - Free\Report\Document.aux")
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -155,25 +155,29 @@ LaTeX Font Info:    ... okay on input line 11.
 \MPnumerator=\count105
 \makeMPintoPDFobject=\count106
 \everyMPtoPDFconversion=\toks23
-) [1
+) <./UCTcircular_logo1_CMYK.jpg, id=1, 171.5208pt x 173.9298pt>
+File: ./UCTcircular_logo1_CMYK.jpg Graphic file (type jpg)
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+<use ./UCTcircular_logo1_CMYK.jpg>
+Package pdftex.def Info: ./UCTcircular_logo1_CMYK.jpg used on input line 21.
+(pdftex.def)             Requested size: 251.9989pt x 255.54367pt.
+ [1
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <T:/Eclipse Workspace/APG4
+005F/Project 7 - Free/Report/UCTcircular_logo1_CMYK.jpg>]
 ("T:\Eclipse Workspace\APG4005F\Project 7 - Free\Report\Document.toc")
 \tf@toc=\write3
-
-("T:\Eclipse Workspace\APG4005F\Project 7 - Free\Report\Document.lof")
-\tf@lof=\write4
  [1]
-<./unnamed.png, id=13, 236.885pt x 192.72pt>
+<./unnamed.png, id=14, 236.885pt x 192.72pt>
 File: ./unnamed.png Graphic file (type png)
  <use ./unnamed.png>
-Package pdftex.def Info: ./unnamed.png used on input line 34.
+Package pdftex.def Info: ./unnamed.png used on input line 45.
 (pdftex.def)             Requested size: 180.0pt x 146.44518pt.
  [2 <T:/Eclipse Workspace/APG4005F/Project 7 - Free/Report/unnamed.png>] [3]
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.135 		\begin{matrix}
+l.146 		\begin{matrix}
                       
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -181,7 +185,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.136 		 	$A &
+l.147 		 	$A &
                10.000 & 30.000 \\
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -189,7 +193,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.142 		\end{matrix}
+l.153 		\end{matrix}
                     
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -197,7 +201,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.142 		\end{matrix}
+l.153 		\end{matrix}
                     
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -208,7 +212,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.146 		 \begin{pmatrix}
+l.157 		 \begin{pmatrix}
                         
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -216,7 +220,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.155 		 \end{pmatrix}
+l.166 		 \end{pmatrix}
                       
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -225,19 +229,19 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--156
+Underfull \hbox (badness 10000) in paragraph at lines 144--167
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--156
+Underfull \hbox (badness 10000) in paragraph at lines 144--167
 
  []
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.160 		\begin{matrix}
+l.171 		\begin{matrix}
                       
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -245,7 +249,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.161 	 		$A &
+l.172 	 		$A &
                9.970 & 30.133 \\
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -253,7 +257,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.167 	 	\end{matrix}
+l.178 	 	\end{matrix}
                      
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -261,7 +265,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.167 	 	\end{matrix}
+l.178 	 	\end{matrix}
                      
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -272,7 +276,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.171 		\begin{pmatrix}
+l.182 		\begin{pmatrix}
                        
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -280,7 +284,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.190 		\end{pmatrix}
+l.201 		\end{pmatrix}
                      
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -291,7 +295,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.196 		\begin{matrix}
+l.207 		\begin{matrix}
                       
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -299,7 +303,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.197 			$A &
+l.208 			$A &
               10.000  & 30.000\\
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -307,7 +311,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.203 	 	\end{matrix}
+l.214 	 	\end{matrix}
                      
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -315,7 +319,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.203 	 	\end{matrix}
+l.214 	 	\end{matrix}
                      
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -324,45 +328,45 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--206
+Underfull \hbox (badness 10000) in paragraph at lines 169--217
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--206
+Underfull \hbox (badness 10000) in paragraph at lines 169--217
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--206
+Underfull \hbox (badness 10000) in paragraph at lines 169--217
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--206
+Underfull \hbox (badness 10000) in paragraph at lines 169--217
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--206
+Underfull \hbox (badness 10000) in paragraph at lines 169--217
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--206
+Underfull \hbox (badness 10000) in paragraph at lines 169--217
 
  []
 
 [4] [5] [6] ("T:\Eclipse Workspace\APG4005F\Project 7 - Free\Report\Document.au
 x") ) 
 Here is how much of TeX's memory you used:
- 1807 strings out of 493921
- 22878 string characters out of 3147270
- 84814 words of memory out of 3000000
- 5113 multiletter control sequences out of 15000+200000
+ 1812 strings out of 493921
+ 22935 string characters out of 3147270
+ 84820 words of memory out of 3000000
+ 5118 multiletter control sequences out of 15000+200000
  9709 words of font info for 35 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,8n,20p,369b,226s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,8n,20p,369b,228s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:
 /Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program
  Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/M
@@ -373,9 +377,9 @@ ic/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
 8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C
 :/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on Document.pdf (7 pages, 148011 bytes).
+Output written on Document.pdf (7 pages, 292112 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
+ 72 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
