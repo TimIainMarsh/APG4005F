@@ -53,9 +53,8 @@ def Read_Points(filename):
 
     return Points, Obs
 
-
 def A_Matrix(Points, Obs,unknowns):
-    print("This A matrix is soooo kak!!")
+    #print("This A matrix is soooo kak!!")
     A = np.zeros(shape=(len(unknowns),len(Obs)))
     acc = 0
     for unknown in unknowns:
@@ -85,6 +84,8 @@ def A_Matrix(Points, Obs,unknowns):
                     valueY = f.diff(dy1)
                     valueY = valueY.subs(x2,target.x).subs(x1,point.x)
                     A[acc][down] =valueY
+                elif UNsp[1] == 'orr':
+                    A[acc][down] = -1
                             
                             
             elif OBsp[1] == UNsp[0]:
@@ -111,6 +112,9 @@ def A_Matrix(Points, Obs,unknowns):
                     valueY = f.diff(dy2)
                     valueY = valueY.subs(x2,target.x).subs(x1,point.x)
                     A[acc][down] =valueY
+                elif UNsp[1] == 'orr':
+                    A[acc][down] = -1
+                    
             down += 1
         acc += 1
     return A
@@ -126,17 +130,18 @@ def l_Matrix(Obs,Points):
 
 
 def Creating_Unknowns(Points):
-    print("The credibility of this program is unknown.")
+    #print("The credibility of this program is unknown.")
     unknowns = []
     for Point_name, P in Points.items():
         if P.Tag == 'P':
             unknowns.append(Point_name + '_x')
             unknowns.append(Point_name + '_y')
+            unknowns.append(Point_name + '_orr')
     unknowns.sort()
     return unknowns
 
 def get_averageXY(Points):
-    print("This program is average...")
+    #print("This program is average...")
     xAve = 0
     yAve = 0
     for j,i in Points.items():
@@ -145,7 +150,7 @@ def get_averageXY(Points):
     return xAve,yAve
 
 def find_C(Points):
-    print("This is probably not the C you were looking for...")
+    #print("This is probably not the C you were looking for...")
     c = 0
     xAve,yAve = get_averageXY(Points)
     for j,i in Points.items():
@@ -153,12 +158,11 @@ def find_C(Points):
         ni = i.y - yAve
         c += (ei**2 + ni**2)
     c = mt.sqrt(c)
-    
-    print(c)
+
     return c
 
 def G_Matrix(Points):
-    print("This G matrix is most probably a load of shit!")
+    #print("This G matrix is most probably a load of shit!")
     xAve,yAve = get_averageXY(Points)
     c = find_C(Points)
     m = len(Points)
@@ -169,32 +173,57 @@ def G_Matrix(Points):
         
         gRowX = [1/mt.sqrt(m) , 0, -(ni/c), (ei/c)]
         gRowY = [0, 1/mt.sqrt(m),(ei/c), (ni/c)]
+        gRowOrr = [1,1,1,1]
         
         G.append(gRowX)
         G.append(gRowY)
+        G.append(gRowOrr)
     G = np.asmatrix(G)
-    
+    return G
+
+def G_Matrix_WEigs(N):
+    eigs = LA.eigh(N)
+    G = []
+    count  = 0
+    for i in eigs[0]:
+        if round(float(i),3) == 0.0:
+            G.append(eigs[1][count])
+        count +=1
+    G = np.asmatrix(G).T
+    #print(G.T)
     return G
                 
 def S_Transform(G,X):
-    sI = [[1,0,0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,0,0,0,0,0,0,0,0]]
     
+    '''['A_orr'1, 'A_x'2, 'A_y'3, 'B_orr'4, 'B_x'5, 'B_y'6, 'C_orr'7, 'C_x'8, 'C_y'9,
+         'D_orr'10,'D_x'11, 'D_y'12, 'P_orr'13, 'P_x'14, 'P_y'15, 'Q_orr'16, 'Q_x'17, 'Q_y'18]'''
+    sI = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],#1
+          [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],#2
+          [0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],#3
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],#4
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],#5
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],#6
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],#7
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],#8
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],#9
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],#10
+          [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],#11
+          [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0],#12
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],#13
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],#14
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],#15
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],#16
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],#17
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]#18
+    
+    #sI = np.array(np.identity(18))
     gtsigi = (G.T*sI*G).I
     X1 = X - (G * gtsigi * G.T * sI * X)
+    t = - (G * gtsigi * G.T * sI * X)
+    #print (t)
     
     return X1
-print("Tim suuuuucks!!!")
+
 if __name__ == '__main__':
     filename = 'Book.csv'
     Points,Obs = Read_Points(filename)
@@ -202,6 +231,8 @@ if __name__ == '__main__':
     iterations = 5
     number = 0
     maxX = 0
+    for pn,p in Points.items():
+        print (pn,round(p.x,3),round(p.y,3), p.Tag)
     with log_timing(str(iterations) + ' iterations:',logger):
         for i in range(iterations):      #number of iterations
             number +=1
@@ -209,6 +240,9 @@ if __name__ == '__main__':
             unknowns = Creating_Unknowns(Points)
             '''creating the A and populating it'''
             A = A_Matrix(Points, Obs,unknowns)
+            #print(len(A))
+            #print(np.linalg.matrix_rank(A))
+            
             P = np.array(np.identity(len(Obs)))
             '''W population'''
             l = l_Matrix(Obs,Points)
@@ -219,23 +253,28 @@ if __name__ == '__main__':
             ''''''
             N = A.T *P * A
             G = G_Matrix(Points)
+            G = G_Matrix_WEigs(N)
+            #print(G)
             
-            eigs = LA.eigh(N)
-            G = []
-            count  = 0
-            for i in eigs[0]:
-                #print (float(i))
-                if round(float(i),10) == 0:
-                   G.append(eigs[1][count])
-                count +=1
-            G = np.asmatrix(G)
-            print(G)
             GGt = G * G.T
+            
             N_ = N + GGt
             Q_ = N_.I
             Qxx = Q_ - GGt
             X = Q_ * A.T * P * l
-            print(X)
+            
+            '''S TRansformation'''
+            
+            #X = S_Transform(G,X)
+
+            #print(X)
+
+
+            V = A*X - l
+            
+            
+            print(V)
+            
             '''update coords'''
             if max(X)> maxX:
                 maxX = max(X)
@@ -249,15 +288,19 @@ if __name__ == '__main__':
                     point.updateY(float(X[count]))
                 count +=1
         '''End of iterations'''
-    print("This program was created by a n0000000000b!!!")
    
     for pn,p in Points.items():
         print (pn,round(p.x,3),round(p.y,3), p.Tag)
     print(str(maxX)+'---')
-    
 
-    
-    #print(Qxx)
+    sigX = float((V.T * P * V)/(len(Obs)-len(Points)))
+    Ex = sigX * (A.T * P * A)
+    print(len(Ex))
+    for i in range(len(Ex)):
+        for j in range(len(Ex[1])):
+            print(Ex[i,j])
+            
+
 
 
 #30 150
