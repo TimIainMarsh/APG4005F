@@ -252,7 +252,7 @@ if __name__ == '__main__':
             P = np.asmatrix(P)
             ''''''
             N = A.T *P * A
-            G = G_Matrix(Points)
+            #G = G_Matrix(Points)
             G = G_Matrix_WEigs(N)
             #print(G)
             
@@ -299,7 +299,7 @@ if __name__ == '__main__':
     for i in range(len(Ex)):
         for j in range(len(Ex[1])):
             print(Ex[i,j])
-            
+            pass
 
 
 
